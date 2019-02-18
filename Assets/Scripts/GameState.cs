@@ -8,6 +8,7 @@ public class GameState : MonoBehaviour {
 
     public static GameState Instance { get { return _instance; } }
     public bool IsGameOver = false;
+    public bool IsPaused = false;
     public GameObject player;
 
     private void Awake()
@@ -22,5 +23,9 @@ public class GameState : MonoBehaviour {
         }
     }
 
+    public bool IsGameRunning()
+    {
+        return !IsGameOver && !IsPaused;
+    }
 
 }

@@ -4,6 +4,7 @@ using System.Collections;
 public class CameraMovement : MonoBehaviour {
     //Set the speed that the camera moves through space
     public float cameraSpeed = 8f;
+    public float verticalBound = -6.0f;
     private float currentScrollPosition = 0f;
     private float verticalOffset;
 
@@ -30,7 +31,7 @@ public class CameraMovement : MonoBehaviour {
         {
             newPosition = new Vector3(
                 Mathf.Lerp(transform.position.x, cameraSpeed * currentScrollPosition, 1f * Time.deltaTime),
-                GameState.Instance.player.transform.position.y + verticalOffset, 
+                Mathf.Max(GameState.Instance.player.transform.position.y + verticalOffset, verticalBound), 
                 transform.position.z);
             /*
             switch (SpaceManager.instance.scrollDirection)

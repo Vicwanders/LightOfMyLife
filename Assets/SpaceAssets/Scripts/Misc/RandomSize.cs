@@ -5,6 +5,7 @@ using UnityEngine;
 public class RandomSize : MonoBehaviour {
     [Range(1.0f, 10.0f)]
     public float multiplierMax = 3f;
+    public bool randomRotate = false;
     Vector3 initialScale;
 
     void Start () {
@@ -17,6 +18,12 @@ public class RandomSize : MonoBehaviour {
     {
         //Choose a random multiplied scale from the initial scale and the multiplierMax variable
         transform.localScale = initialScale * Random.Range(1f, multiplierMax);
+        if (randomRotate)
+        {
+            Vector3 angles = transform.eulerAngles;
+            angles.z = Random.Range(0, 360);
+            transform.eulerAngles = angles;
+        }
     }
     
     void Update () {

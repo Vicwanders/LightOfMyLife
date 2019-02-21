@@ -22,6 +22,7 @@ public class ParallaxMovement : MonoBehaviour {
     //It also is used to regenerate it
     //if the value is 1f is the screen's width or heigth depending on the direction   
     public float limitOffScreen = 1f;
+    public float spawnDistance = 1f;
 
     void Start () {
         if(SpaceManager.instance != null)
@@ -55,10 +56,10 @@ public class ParallaxMovement : MonoBehaviour {
         switch (direction)
         {
             case ScrollDirection.LeftToRight:
-                transform.position = Camera.main.ViewportToWorldPoint(new Vector3(1f + limitOffScreen, Random.Range(0f, 1f), 10f));
+                transform.position = Camera.main.ViewportToWorldPoint(new Vector3(1f + spawnDistance, Random.Range(-2f, 2f), 10f));
                 break;
             case ScrollDirection.RightToLeft:
-                transform.position = Camera.main.ViewportToWorldPoint(new Vector3(-limitOffScreen, Random.Range(0f, 1f), 10f));
+                transform.position = Camera.main.ViewportToWorldPoint(new Vector3(-spawnDistance, Random.Range(-2f, 2f), 10f));
                 break;
             case ScrollDirection.DownToUp:
                 transform.position = Camera.main.ViewportToWorldPoint(new Vector3(Random.Range(0f, 1f), 1f + limitOffScreen, 10f));

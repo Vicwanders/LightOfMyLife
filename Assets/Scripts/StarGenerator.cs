@@ -13,12 +13,13 @@ public class StarGenerator : MonoBehaviour {
         {
             Vector3 position = new Vector3(
                 Random.Range(0f, 1f) + limitOffScreen * Random.Range(-1f, 1f),
-                Random.Range(0f, 1f) + limitOffScreen * Random.Range(-1f, 1f), 
+                Random.Range(-3f, 3f), 
                 10f);
-            Instantiate(
+            GameObject star = Instantiate(
                 starPrefab,
                 Camera.main.ViewportToWorldPoint(position),
                 Quaternion.identity);
+            star.transform.parent = this.transform;
         }
 	}
 }

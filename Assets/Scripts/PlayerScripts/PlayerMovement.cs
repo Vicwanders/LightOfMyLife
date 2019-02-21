@@ -51,11 +51,24 @@ public class PlayerMovement : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("Collision");
-        if (collision.gameObject.tag == "Floor" && inAir)
+        if (collision.gameObject.tag == "Floor")
         {
-            Debug.Log("Collided with ground");
-            inAir = false;
-            animator.SetBool("inAir", inAir);
+            if (inAir)
+            {
+                Debug.Log("Collided with ground");
+                inAir = false;
+                animator.SetBool("inAir", inAir);
+            }
+            this.transform.SetParent(collision.transform);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        Debug.Log("Collision");
+        if (collision.gameObject.tag == "Floor")
+        {
+            this.transform.SetParent(null);
         }
     }
 

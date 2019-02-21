@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class PlayerState : MonoBehaviour {
 
     public float boundsTolerance = 0.1f;
-    public float shrinkingRate = 5.0f;
+    public float shrinkingFrequency = 5.0f;
     public GameObject mask;
-    private int life = 25;
+    public int life = 50;
     private float shrinkTimer;
+    private SpriteRenderer spriteRenderer;
+    private const int CRITICAL_LIFE = 15;
 
 	// Use this for initialization
 	void Start () {
-        shrinkTimer = 0;
+        this.shrinkTimer = 0;
+        this.spriteRenderer = this.GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -25,8 +29,8 @@ public class PlayerState : MonoBehaviour {
         }
         if (GameState.Instance.IsGameRunning())
         {
-            shrinkTimer += Time.deltaTime;
-            if (shrinkTimer > shrinkingRate)
+            this.shrinkTimer += Time.deltaTime;
+            if (this.shrinkTimer > this.shrinkingFrequency)
             {
                 life = Mathf.Max(0, life - 1);
                 UpdateMask();
@@ -41,7 +45,14 @@ public class PlayerState : MonoBehaviour {
     private void UpdateMask()
     {
         this.mask.transform.localScale = new Vector3(life, life, 1);
-        shrinkTimer = 0;
+        this.shrinkTimer = 0;
+        if (life < CRITICAL_LIFE)
+        {
+            this.spriteRenderer.color = new Color(1, 1, 1, 1.0f - (CRITICAL_LIFE - life) * (1.0f/CRITICAL_LIFE));
+        } else
+        {
+            this.spriteRenderer.color = new Color(1, 1, 1, 1);
+        }
     }
 
     public void AddLife(int life)

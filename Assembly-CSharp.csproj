@@ -68,8 +68,10 @@
     <Compile Include="Assets\Scripts\StarGenerator.cs" />
     <Compile Include="Assets\Scripts\StateControllers\AudioController.cs" />
     <Compile Include="Assets\Scripts\StateControllers\GameState.cs" />
+    <Compile Include="Assets\Scripts\StateControllers\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\StateControllers\UIController.cs" />
     <Compile Include="Assets\SpaceAssets\Scripts\CameraMovement.cs" />
+    <Compile Include="Assets\SpaceAssets\Scripts\GoalCutscene.cs" />
     <Compile Include="Assets\SpaceAssets\Scripts\Misc\RandomColor.cs" />
     <Compile Include="Assets\SpaceAssets\Scripts\Misc\RandomRotation.cs" />
     <Compile Include="Assets\SpaceAssets\Scripts\Misc\RandomSize.cs" />
@@ -77,6 +79,9 @@
     <Compile Include="Assets\SpaceAssets\Scripts\ParallaxMovement.cs" />
     <Compile Include="Assets\SpaceAssets\Scripts\ShootingStar.cs" />
     <Compile Include="Assets\SpaceAssets\Scripts\SpaceManager.cs" />
+    <None Include="Assets\Annie_Use_Your_Telescope\OFL.txt" />
+    <None Include="Assets\Amiri\OFL.txt" />
+    <None Include="Assets\Amatic_SC\OFL.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>/Users/artmedia/Desktop/LightOfMyLife/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

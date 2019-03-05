@@ -14,9 +14,5 @@ public class UIController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (GameState.Instance.IsGameOver)
-        {
-            gameOver.enabled = true;
-        }
 	}
 }

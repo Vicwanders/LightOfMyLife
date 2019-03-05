@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameState : MonoBehaviour {
 
@@ -8,6 +9,7 @@ public class GameState : MonoBehaviour {
 
     public static GameState Instance { get { return _instance; } }
     public bool IsGameOver = false;
+    public bool IsGameWon = false;
     public bool IsPaused = false;
     public GameObject player;
 
@@ -25,7 +27,15 @@ public class GameState : MonoBehaviour {
 
     public bool IsGameRunning()
     {
-        return !IsGameOver && !IsPaused;
+        return !IsGameOver && !IsPaused && !IsGameWon;
+    }
+
+    private void FixedUpdate()
+    {
+        if (SceneManager.GetActiveScene().name == "Game" && IsGameOver)
+        {
+            SceneLoader.Instance.EndGame();
+        }
     }
 
 }

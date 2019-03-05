@@ -27,7 +27,7 @@ public class CameraMovement : MonoBehaviour {
         currentScrollPosition += Time.deltaTime;
         Vector3 newPosition = Vector3.zero;
         //Set the new position based on the scroll direction and speed
-        if (!GameState.Instance.IsGameOver)
+        if (GameState.Instance.IsGameRunning())
         {
             float reference = Mathf.Max(transform.position.x, GameState.Instance.player.transform.position.y);
             newPosition = new Vector3(

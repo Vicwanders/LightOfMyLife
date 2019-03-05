@@ -39,8 +39,20 @@ public class PlayerState : MonoBehaviour {
                     GameState.Instance.IsGameOver = true;
                 }
             }
-        }  
+        }
 	}
+    
+    /*
+    IEnumerator ExpandLife()
+    {
+        while (this.life < 200)
+        {
+            yield return new WaitForSeconds(0.01f);
+            life += 1;
+            UpdateMask();
+        }
+    }
+    */
 
     private void UpdateMask()
     {

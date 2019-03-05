@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        if (!GameState.Instance.IsGameOver)
+        if (GameState.Instance.IsGameRunning())
         {
             if (Input.GetButton("Jump") && !inAir)
             {
@@ -80,6 +80,13 @@ public class PlayerMovement : MonoBehaviour {
             playerState.AddLife(points);
             AudioController.Instance.PlaySparkle();
             Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "Goal")
+        {
+            GameState.Instance.IsGameWon = true;
+            rigidBody.velocity = Vector2.zero;
+            animator.SetBool("inAir", false);
+            animator.SetFloat("walking", 0f);
         }
     }
 }

@@ -55,4 +55,9 @@ public class SceneLoader : MonoBehaviour {
     {
         StartCoroutine(LoadScene("Menu"));
     }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }

@@ -9,7 +9,7 @@ public class GoalCutscene : MonoBehaviour {
     public Text text;
     private PlayerState PlayerState;
     private bool startedEnding = false;
-    private bool finalSceneReached = false;
+    //private bool finalSceneReached = false;
 
 	// Update is called once per frame
 	void Update () {
@@ -23,9 +23,11 @@ public class GoalCutscene : MonoBehaviour {
             StartCoroutine(ExpandLife());
             AudioController.Instance.PlayEnding();
         }
+        /*
         if (finalSceneReached && (Input.GetMouseButtonDown(0) || Input.GetButton("Submit"))) {
             SceneLoader.Instance.MainMenu();
         }
+        */
 	}
 
     IEnumerator ExpandLife()
@@ -69,8 +71,8 @@ public class GoalCutscene : MonoBehaviour {
             text.color = new Vector4(text.color.r, text.color.g, text.color.b, text.color.a + 0.01f);
         }
         //AudioController.Instance.StopEnding();
-        yield return new WaitForSeconds(5f);
-        finalSceneReached = true;
-        //SceneLoader.Instance.MainMenu();
+        yield return new WaitForSeconds(3f);
+        //finalSceneReached = true;
+        SceneLoader.Instance.MainMenu();
     }
 }

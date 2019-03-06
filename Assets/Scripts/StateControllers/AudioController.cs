@@ -8,8 +8,8 @@ public class AudioController : MonoBehaviour {
 
     public static AudioController Instance { get { return _instance; } }
     public AudioSource SparkleFX;
-    public AudioSource Background;
-    public AudioSource Ending;
+    public BGMSmoother Background;
+    public BGMSmoother Ending;
     public float smoothingTime = 0.2f;
 
     private void Awake()
@@ -24,25 +24,13 @@ public class AudioController : MonoBehaviour {
         }
     }
 
-    private IEnumerator SmoothTransition(AudioSource audio1)
+    public void Silence()
     {
-        while (audio1.volume > 0)
+        Background.Stop();
+        if (Ending)
         {
-            audio1.volume -= 0.1f;
-            yield return new WaitForSeconds(smoothingTime);
+            Ending.Stop();
         }
-        audio1.Stop();
-    }
-
-    private IEnumerator SmoothTransition(AudioSource audio1, AudioSource audio2)
-    {
-        while (audio1.volume > 0)
-        {
-            audio1.volume -= 0.1f;
-            yield return new WaitForSeconds(smoothingTime);
-        }
-        audio1.Stop();
-        audio2.Play();
     }
 
     public void PlaySparkle()
@@ -52,11 +40,12 @@ public class AudioController : MonoBehaviour {
 
     public void PlayEnding()
     {
-        StartCoroutine(SmoothTransition(Background, Ending));
+        Background.Stop();
+        Ending.Play();
     }
 
     public void StopEnding()
     {
-        StartCoroutine(SmoothTransition(Ending));
+        Ending.Stop();
     }
 }

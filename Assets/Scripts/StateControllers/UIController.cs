@@ -5,14 +5,8 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour {
 
-    public Text gameOver;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	}
+    public void PlayButtonPressSound()
+    {
+        AudioController.Instance.PlaySparkle();
+    }
 }
